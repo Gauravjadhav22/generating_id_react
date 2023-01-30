@@ -115,7 +115,7 @@ const navigate = useNavigate()
           </label>
           {excelFileError && <div className='text-red-500'
             style={{ marginTop: 5 + 'px' }}>{excelFileError}</div>}
-          <button type='submit' className='bg-purple-600 font-semibold p-2 rounded-lg text-white text-xl '
+          <button type='submit' className='bg-purple-600 font-semibold p-2 rounded-lg text-white text-xl px-24'
             style={{ marginTop: 5 + 'px' }}>Submit</button>
         </form>
       </div>

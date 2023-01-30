@@ -11,7 +11,7 @@ const Template = () => {
   const { studentData } = useContext(StudentContext)
   const printDocument = async () => {
 
-  const icard = document.querySelector('#icardtopdf')
+    const icard = document.querySelector('#icardtopdf')
 
     const doc = new jsPDF('l', 'pt');
     await html2canvas(icard, {
@@ -28,19 +28,6 @@ const Template = () => {
 
 
   }
-  useEffect(() => {
-
-    if (window.performance) {
-      if (performance.navigation.type == 1) {
-        return window.location.href = '/'
-      }
-    }
-
-    return (() => {
-
-
-    })
-  }, [])
 
 
 
