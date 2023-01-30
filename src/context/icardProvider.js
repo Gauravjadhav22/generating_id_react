@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 
 const StudentContext = createContext()
@@ -6,63 +6,37 @@ const StudentContext = createContext()
 
 export const StudentProvider = ({ children }) => {
     const [studentData, setStudentData] = useState({})
-    const [studentsData, setStudentsData] = useState([{
-        fullName: "testdata.fullName11",
-        email: "testdata.email",
-        address: "testdata.address",
-        age: "testdata.age",
-        bloodgrp: "testdata.bloodgrp",
-        phone: " testdata.phone",
-        className: "testdata.className",
-        dob: "testdata.dob",
-        userPic: "testdata.userPic",
-        parentPhone: "testdata.parentPhone",
-        motherName: "testdata.motherName",
-    },{
-        fullName: "testdata.fullName33",
-        email: "testdata.email",
-        address: "testdata.address",
-        age: "testdata.age",
-        bloodgrp: "testdata.bloodgrp",
-        phone: " testdata.phone",
-        className: "testdata.className",
-        dob: "testdata.dob",
-        userPic: "testdata.userPic",
-        parentPhone: "testdata.parentPhone",
-        motherName: "testdata.motherName",
-    },{
-        fullName: "testdata.fullName55",
-        email: "testdata.email",
-        address: "testdata.address",
-        age: "testdata.age",
-        bloodgrp: "testdata.bloodgrp",
-        phone: " testdata.phone",
-        className: "testdata.className",
-        dob: "testdata.dob",
-        userPic: "testdata.userPic",
-        parentPhone: "testdata.parentPhone",
-        motherName: "testdata.motherName",
-    },{
-        fullName: "testdata5.fullName",
-        email: "testdata.email",
-        address: "testdata.address",
-        age: "testdata.age",
-        bloodgrp: "testdata.bloodgrp",
-        phone: " testdata.phone",
-        className: "testdata.className",
-        dob: "testdata.dob",
-        userPic: "testdata.userPic",
-        parentPhone: "testdata.parentPhone",
-        motherName: "testdata.motherName",
-    },])
+    const [studentsData, setStudentsData] = useState([])
+ 
+    const addStudents =  useCallback(
+      (newState ) =>   {
+        console.log(newState);
+        setStudentsData([...newState])
 
-    const addStudent = (data) => {
-        setStudentData({ ...data })
-    }
+    },
+      [studentsData,setStudentsData],
+    )
+    const addStudent =  useCallback(
+      (newState ) =>   {
+        console.log(newState);
+        setStudentData({...newState})
 
+    },
+      [studentData,setStudentData],
+    )
+  
+    const getStudents = useCallback(
+        () => ({setStudentsData, ...studentsData}),
+        [studentsData, setStudentsData],
+      )
+    const getStudent = useCallback(
+        () => ({setStudentData, ...studentData}),
+        [studentData, setStudentData],
+      )
+    
 
     return (
-        <StudentContext.Provider value={{ studentData, addStudent ,studentsData}}>
+        <StudentContext.Provider value={{getStudents,getStudent,addStudent, studentData, addStudents ,studentsData}}>
             {children}
         </StudentContext.Provider>)
 }

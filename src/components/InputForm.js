@@ -1,8 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { addDoc, collection } from "@firebase/firestore"
 import { firestore } from "../config/firebase"
 import StudentContext from '../context/icardProvider'
+import excelToJson from "convert-excel-to-json";
+
 const InputForm = () => {
 
     const { addStudent } = useContext(StudentContext)
@@ -22,8 +24,10 @@ const InputForm = () => {
     const [className, setClassName] = useState("")
     const [userPic, setUserPic] = useState("")
 
+
     const handleSubmit = (testdata) => {
         console.log(testdata);
+
 
         const ref = collection(firestore, "testData") // Firebase creates this automatically
 
@@ -84,8 +88,9 @@ const InputForm = () => {
 
 
 
-    return (
+    return (<>
         <div className='mx-12 my-12 flex justify-center'>
+
             {
                 loading ? (
                     <div className='flex justify-center items-center px-3 w-fit rounded-xl py-2 absolute'>
@@ -133,7 +138,6 @@ const InputForm = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 type="email"
                                 value={email}
-
                                 name="floating_email"
                                 id="floating_email"
                                 className="block pt-3.5 pl-2  w-64 lg:w-96 md:w-96 xl:w-full text-sm text-black 
@@ -238,10 +242,10 @@ const InputForm = () => {
                                 onChange={(e) => {
                                     var ageDifMs = Date.now() - e.target.valueAsDate.getTime();
                                     var ageDate = new Date(ageDifMs); // miliseconds from epoch
-                                    let age=Math.abs(ageDate.getUTCFullYear() - 1970)
-                                    if (age<17) {
+                                    let age = Math.abs(ageDate.getUTCFullYear() - 1970)
+                                    if (age < 17) {
                                         alert("please enter correct dob")
-                                        e.target.value=null
+                                        e.target.value = null
                                     }
                                     setAge(age);
                                     setDob(e.target.value)
@@ -371,6 +375,7 @@ const InputForm = () => {
 
 
         </div>
+    </>
     )
 }
 

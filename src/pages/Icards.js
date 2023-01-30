@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from "../assets/logo-g.png"
 import sign from "../assets/sign.png"
 import jsPDF from 'jspdf';
@@ -6,32 +6,17 @@ import html2canvas from 'html2canvas';
 import StudentContext from '../context/icardProvider';
 import { useContext } from 'react';
 import QRCode from 'react-qr-code';
+import PdfFile from '../components/PdfFile';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+
+
 const Icards = () => {
 
-    const { studentsData } = useContext(StudentContext)
-    // const printDocument = async () => {
-    //     studentsData.map(async (item, index) => {
 
-    //         const icard = document.getElementById(`#icardNo.` + index)
-    //         console.log(icard);
-    //         const doc = new jsPDF('l', 'pt');
-    //         await html2canvas(icard, {
-    //             allowTaint: true,
-    //             useCORS: true,
-
-    //         }).then((canvas) => {
-    //             doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 568, 600);
-    //         })
-
-
-    //         doc.save("Document.pdf")
-
-    //     })
+    const { studentsData, getStudents } = useContext(StudentContext)
 
 
 
-
-    // }  
     const printDocument = async () => {
 
         const icards = document.getElementById('icards')
@@ -56,16 +41,18 @@ const Icards = () => {
                 doc.addImage(canvas.toDataURL("image/png"), 'PNG', 10, 0, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
                 while (heightLeft >= 0) {
-                    // position = heightLeft - imgHeight +215;
+                    position = heightLeft - imgHeight +315;
                     doc.addPage();
                     doc.addImage(canvas.toDataURL("image/png"), 'PNG', 10, position, imgWidth, imgHeight );
-                    
+
                     heightLeft -= pageHeight;
                 }
-
-                doc.save('download.pdf');
-
+         
+              
+              doc.save('download.pdf');
             })
+
+
 
         }, 1000);
 
@@ -75,21 +62,20 @@ const Icards = () => {
 
 
 
-
     }
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (window.performance) {
-            if (performance.navigation.type == 1) {
-                return window.location.href = '/'
-            }
-        }
+    //     if (window.performance) {
+    //         if (performance.navigation.type == 1) {
+    //             return window.location.href = '/'
+    //         }
+    //     }
 
-        return (() => {
+    //     return (() => {
 
 
-        })
-    }, [])
+    //     })
+    // }, [])
 
 
 
@@ -97,18 +83,19 @@ const Icards = () => {
     return (
         <>
 
+            <>
             <div className='flex justify-center mt-14 animate-bounce'>
                 <button onClick={() => printDocument()} className='bg-blue-600 text-white p-1 rounded-lg text-xl'>
                     click here to download
                 </button>
             </div>
-            <div id='icards'>
+            <div id='icards' >
                 {studentsData.map((studentData, index) => {
 
                     return (
-                        <div key={index + 'key'} style={{ width: "584px" }} className='p-10 mx-14 flex-col justify-between items-center  h-fit overflow-hidden '>
+                        <div key={index + 'key'} style={{ width: "584px", height: '440mm', overflow: 'visible',marginBottom:"152px"  }} className='p-10 mx-14 flex-col justify-between items-center  h-fit overflow-visible '>
                             <div className='border-b-0 shadow rounded-xl bg-black'>
-                                {/* //header of icard */}
+                          
                                 <div className='rounded-t-xl p-1 pb-1 flex justify-around items-center bg-purple-500 text-white capitalize'>
                                     <div style={{ marginLeft: "-20px", marginRight: "-60px" }} >
 
@@ -123,7 +110,6 @@ const Icards = () => {
                                     </div>
                                 </div>
 
-                                {/* //body of icard */}
                                 <div className='px-3 bg-white flex justify-between border-2 rounded-2xl '>
                                     <div className='py-2'>
                                         <div className='text-black capitalize text-lg font-semibold'>
@@ -143,7 +129,7 @@ const Icards = () => {
 
 
                                     </div>
-                                    {/* //userpic and principal sign of icard */}
+                               
                                     <div className='mt-14 flex flex-col justify-self-end items-center'>
                                         <div className='rounded-lg h-fit overflow-hidden shadow-md border-2 p-1 bg-purple-500'>
                                             <img alt="img.jpg" className='border-2 rounded-lg shadow-xl bg-white' src={studentData.userPic} width={190} />
@@ -163,7 +149,7 @@ const Icards = () => {
 
 
                             <div className='rounded-xl shadow '>
-                                {/* //body of icard */}
+                       
                                 <div className=' bg-white pt-1 flex-col justify-between rounded-xl'>
                                     <div className='px-1 text-xl font-medium'>
 
@@ -200,8 +186,16 @@ const Icards = () => {
 
                 })}
             </div>
+</>
+            {/* {
+                setTimeout(() => {
+                    <PDFDownloadLink document={<PdfFile students={studentsData} />} filename="FORM">
+                        {({ loading }) => (loading ? <button>Loading Document...</button> : <button>Download</button>)}
+                    </PDFDownloadLink>
+                }, 2000)
+            } */}
 
-
+            {/* <PdfFile students={studentsData} /> */}
         </>
 
     )
