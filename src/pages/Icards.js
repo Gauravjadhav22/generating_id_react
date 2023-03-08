@@ -3,14 +3,12 @@ import logo from "../assets/logo-g.png"
 import sign from "../assets/sign.png"
 import bgImg from "../assets/p1.jpg"
 import load from "../assets/load.gif"
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+
 import StudentContext from '../context/icardProvider';
 import { useContext } from 'react';
-import QRCode from 'react-qr-code';
-import PdfFile from '../components/PdfFile';
+
 import { PDFDownloadLink } from '@react-pdf/renderer';
-// import QRCode from 'qrcode.js';
+
 import { Page, Text, Image, Document, StyleSheet, View } from "@react-pdf/renderer";
 
 
@@ -24,17 +22,14 @@ const Icards = () => {
     const PdfFile = () => {
 
         console.log(useContext(StudentContext));
-        // const { studentsData } = useContext(StudentContext)
-        // console.log(students);
-        let imgrrr = "https://www.qr-code-generator.com/wp-content/themes/qr/new_structure/assets/media/images/api_page/qrcodes/bw/Api_page_-_QR-Code-Generator_com-1.png"
+
 
         return (
             <Document >
-
                 {
                     studentsData?.map((studentData, index) => {
 
-                        return <Page style={{ textTransform: "capitalize" }} >
+                        return <Page style={{ textTransform: "capitalize", }} >
 
 
 
@@ -46,11 +41,11 @@ const Icards = () => {
 
                                         <Image alt="img.jpg" src={logo} style={{ width: "93px" }} />
                                     </View>
-                                    <View style={{ marginHorizontal: "20px", color: 'white' }}>
+                                    <View style={{ marginHorizontal: "20px", color: 'white', justifyContent: "center", alignItems: "center" }}>
 
-                                        <Text style={{ marginTop: "8px" }} >mahatma gandhi mission's</Text>
-                                        <Text style={{ marginTop: "8px" }} >college of computer science & it</Text>
-                                        <Text style={{ marginTop: "8px", marginBottom: "8px",fontWeight:"bold" }}>near airport nanded-431605 tel-45645*** web:https://www.mgmccsit.ac.in/</Text>
+                                        <Text style={{ marginTop: "8px", textAlign: "center", fontSize: "18px" }} >mahatma gandhi mission's</Text>
+                                        <Text style={{ marginTop: "8px", textTransform: "uppercase", fontSize: "22px" }} >college of computer science & it</Text>
+                                        <Text style={{ marginTop: "8px", marginBottom: "8px", fontWeight: "bold", fontSize: "12px" }}>near airport nanded-431605 tel-45645*** web:https://www.mgmccsit.ac.in/</Text>
                                     </View>
 
                                 </View>
@@ -70,7 +65,7 @@ const Icards = () => {
                                     </View>
 
 
-                                    <View style={{ display: "flex", justifyContent: "center", textAlign: "left", alignItems: "center", flexDirection: "row" }}>
+                                    <View style={{ display: "flex", justifyContent: "space-between", textAlign: "left", alignItems: "center", flexDirection: "row" }}>
                                         <View>
 
                                             <Text style={{ margin: "10px", marginHorizontal: "1" }} fixed>BloodGrp: {studentData.bloodgrp}</Text>
@@ -88,6 +83,16 @@ const Icards = () => {
 
 
                             </View>
+
+
+                        </Page>
+                    })}
+                {
+                    studentsData?.map((studentData, index) => {
+
+                        return <Page style={{ textTransform: "capitalize", }} >
+
+
                             <View style={{ height: "400px", display: "flex", flexDirection: "column", border: "1px solid black", borderRadius: "25px", justifyContent: "flex-start", margin: "25px", overflow: "hidden" }} key={index + 'key'}>
 
                                 <View style={{ padding: "15px" }}>
@@ -112,6 +117,7 @@ const Icards = () => {
 
                         </Page>
                     })}
+
             </Document >
         )
     }
@@ -129,10 +135,9 @@ const Icards = () => {
 
 
             {
-                // setTimeout(() => {
                 <PDFDownloadLink document={<PdfFile students={studentsData} />} filename="FORM">
                     {({ loading }) => (loading ?
-                        <div className='text-3xl text-black flex justify-center mt-52'>
+                        <div className='text-3xl text-black flex justify-center mt-52 items-center'>
                             <img src={load} height={150} width={150} />
                             <h1>please wait Pdf is creating</h1>
                         </div>
@@ -142,7 +147,6 @@ const Icards = () => {
                             <button className='text-white bg-green-500 p-2 rounded-xl'>Download Pdf</button>
                         </div>)}
                 </PDFDownloadLink>
-                // }, 2000)
             }
 
         </>

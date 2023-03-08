@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { addDoc, collection } from "@firebase/firestore"
 import { firestore } from "../config/firebase"
 import StudentContext from '../context/icardProvider'
-import excelToJson from "convert-excel-to-json";
+import PhoneInput from 'react-phone-input-2'
 
 const InputForm = () => {
 
@@ -93,12 +93,16 @@ const InputForm = () => {
 
             {
                 loading ? (
-                    <div className='flex justify-center items-center px-3 w-fit rounded-xl py-2 absolute'>
-                        <h1 className='font-bold text-xl animate-pulse'>please wait</h1>
-                        <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
-                        <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
-                        <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
-                        <br /><p>image is uploading...</p>
+                    <div className='flex flex-col justify-center items-center px-3 w-fit rounded-xl py-2 absolute'>
+
+                        <div className='flex justify-center'>
+                            <h1 className='font-bold text-xl animate-pulse'>please wait</h1>
+                            <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
+                            <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
+                            <span className='mt-1.5 h-5 w-5 mx-1 bg-current rounded-full bg-amber-500 animate-bounce' />
+                        </div>
+                        <br />
+                        <p>image is uploading...</p>
                     </div>
                 ) : (
 
@@ -195,7 +199,7 @@ const InputForm = () => {
                             </label>
                         </div>
                         <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
-                            <input
+                            {/* <input
                                 onChange={(e) => setParentPhone(e.target.value)}
                                 value={parentPhone}
                                 type="tel"
@@ -207,13 +211,18 @@ const InputForm = () => {
                         focus:outline-none focus:ring-0 focus:border-blue-600 peer mt-3"
                                 placeholder="+91 78655***"
                                 required
-                            />
+                            /> */}
                             <label
                                 htmlFor="floating_first_name"
-                                className="peer-focus:font-medium absolute text-sm duration-300 transform top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-2 px-1"
+                                className=""
                             >
                                 Parent's Contact
                             </label>
+                            <PhoneInput
+                                country={'in'}
+                                onChange={e => setParentPhone(e)}
+                            />
+
                         </div>
 
                         <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
@@ -270,7 +279,7 @@ const InputForm = () => {
                         <div className="grid md:grid-cols-2 md:gap-6">
 
                             <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
-                                <input
+                                {/* <input
                                     onChange={(e) => setBloodgrp(e.target.value)}
                                     value={bloodgrp}
                                     maxLength="3"
@@ -282,12 +291,30 @@ const InputForm = () => {
                                     focus:outline-none focus:ring-0 focus:border-blue-600 peer mt-3"
                                     placeholder="A+"
                                     required
-                                />
+                                /> */}
                                 <label
-                                    htmlFor="floating_repeat_student_code"
-                                    className="peer-focus:font-medium absolute text-sm duration-300 transform top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-2 px-1"
+                                    htmlFor="floating_bloodgrp"
                                 >
                                     Blood Group
+
+                                    <select onChange={(e) => {
+                                        setBloodgrp(e.target.value)
+                                    }} className='bg-slate-600 text-white ml-4'>
+                                        <option selected value='?'>Unknown</option>
+                                        <option value='A+'>A Positive</option>
+                                        <option value='A+'>A Negative</option>
+                                        <option value='A'>A Unknown</option>
+                                        <option value='B+'>B Positive</option>
+                                        <option value='B-'>B Negative</option>
+                                        <option value='B'>B Unknown</option>
+                                        <option value='AB+'>AB Positive</option>
+                                        <option value='AB-'>AB Negative</option>
+                                        <option value='AB'>AB Unknown</option>
+                                        <option value='O+'>O Positive</option>
+                                        <option value='O-'>O Negative</option>
+                                        <option value='O'>O Unknown</option>
+                                    </select>
+
                                 </label>
                             </div>
                             <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
@@ -315,46 +342,33 @@ const InputForm = () => {
                         </div>
                         <div className="grid md:grid-cols-2 md:gap-6">
                             <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
-                                <input
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    value={phone}
-                                    type="tel"
-                                    maxLength="10"
-                                    name="floating_phone"
-                                    id="floating_phone"
-                                    className="block pt-3.5 pl-2  w-64 lg:w-96 md:w-96 xl:w-full text-sm text-black 
-                        bg-transparent border-0 border-b-2 border-gray-300 appearance-none
-                        focus:outline-none focus:ring-0 focus:border-blue-600 peer mt-3"
-                                    placeholder="+91 95445*****"
-
-                                    required
-                                />
                                 <label
                                     htmlFor="floating_phone"
-                                    className="peer-focus:font-medium absolute text-sm duration-300 transform top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-2 px-1"
                                 >
                                     Phone number
                                 </label>
-                            </div>
-                            <div className="p-2 border-2 shadow my-2 relative z-0 mb-6 w-full group">
-                                <input
-                                    onChange={(e) => setClassName(e.target.value)}
-                                    value={className}
-
-                                    type="text"
-                                    name="floating_company"
-                                    id="floating_company"
-                                    className="block pt-3.5 pl-2  w-64 lg:w-96 md:w-96 xl:w-full text-sm text-black 
-                                    bg-transparent border-0 border-b-2 border-gray-300 appearance-none
-                                    focus:outline-none focus:ring-0 focus:border-blue-600 peer mt-3"
-                                    placeholder="tybca"
-                                    required
+                                <PhoneInput
+                                    country={'in'}
+                                    onChange={e => setPhone(e)}
                                 />
+
+                            </div>
+                            <div className="p-2 border-2 shadow my-2 relative z-0 mb-16 w-full group">
+
                                 <label
                                     htmlFor="floating_class"
-                                    className="peer-focus:font-medium absolute text-sm duration-300 transform top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-95 peer-focus:-translate-y-2 px-1"
+
                                 >
                                     Class
+                                    <select onChange={(e) => {
+                                        setClassName(e.target.value)
+                                    }} className='bg-slate-600 text-white ml-4'>
+                                        <option selected value='FyBca'>--Select--</option>
+                                        <option value='FyBca'>FyBca</option>
+                                        <option value='Sybca'>Sybca</option>
+                                        <option value='Tybca'>Tybca</option>
+
+                                    </select>
                                 </label>
                             </div>
                         </div>

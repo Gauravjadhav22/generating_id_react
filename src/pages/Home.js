@@ -8,11 +8,12 @@ import StudentContext from '../context/icardProvider'
 import { useNavigate } from 'react-router-dom'
 const Home = () => {
   const [exl, setExl] = useState(null)
+  const [showForm, setShowForm] = useState(null)
   const [excelFile, setExcelFile] = useState(null);
   const { addStudents } = useContext(StudentContext)
   const [excelFileError, setExcelFileError] = useState(null);
   const [excelData, setExcelData] = useState(null);
-const navigate = useNavigate()
+  const navigate = useNavigate()
   // useEffect(() => {
   //   console.log(exl);
   //   const uploadExcl = async () => {
@@ -53,6 +54,13 @@ const navigate = useNavigate()
 
   // }, [exl])
 
+  const handleChange = (e) => {
+
+
+    setShowForm(e.target.value)
+
+  }
+
   const fileType = ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
   const handleFile = (e) => {
     let selectedFile = e.target.files[0];
@@ -92,7 +100,7 @@ const navigate = useNavigate()
       setExcelData(data);
       addStudents(data)
       navigate('/icards')
-      
+
     }
     else {
       setExcelData(null);
@@ -104,7 +112,35 @@ const navigate = useNavigate()
 
     <div className='flex flex-col justify-center items-center'>
 
-      <div className='flex flex-col my-4 items-center justify-center'>
+
+      <div className='flex items-center mt-4'>
+
+        <img src={mgmLogo} alt='user_img' />
+        <h1 className='font-bold ml-2 text-purple-600'>
+          MGM CS AND IT
+        </h1>
+      </div>
+      <div className='my-2 mt-4 w-fit flex flex-col items-center rounded-full shadow-md border px-10 py-4 pb-8 shadow-purple-500'>
+        <img src={userLogo} className="rounded-full shadow-sm p-1 shadow-green-400 bg-yellow-200" alt='user_img' width={150} />
+        <h1 className='text-4xl font-bold ml-2 text-yellow-400'>I Card Generator</h1>
+
+      </div>
+    </div>
+    <div className='flex justify-center mt-6'>
+      <label className='bg-black text-white w-fit'>Choose Input:
+
+      <select value={setShowForm} onChange={handleChange} className='bg-gray-500 ml-4 w-fit ' >
+
+        <option selected value="InputFrom">--select--</option>
+        <option selected value="InputFrom">Enter Details</option>
+        <option value="ExcelFile">Upload Excel File</option>
+
+      </select>
+      </label>
+
+    </div>
+    {
+      showForm === "ExcelFile" ? (<div className='flex flex-col my-4 items-center justify-center'>
         <h1 className='font-semibold text-2xl'>Convert Excel File To Pdf</h1>
         <form className='form-group' autoComplete="off"
           onSubmit={handleSubmit}>
@@ -118,24 +154,15 @@ const navigate = useNavigate()
           <button type='submit' className='bg-purple-600 font-semibold p-2 rounded-lg text-white text-xl px-24'
             style={{ marginTop: 5 + 'px' }}>Submit</button>
         </form>
-      </div>
-      <div className='flex items-center mt-4'>
+      </div>) : (
+        <div className='flex justify-center'>
+          <InputForm />
 
-        <img src={mgmLogo} alt='user_img' />
-        <h1 className='font-bold ml-2 text-purple-600'>
-          MGM CS AND IT
-        </h1>
-      </div>
-      <div className=' my-2 mt-4 w-fit flex flex-col items-center rounded-full shadow-md border px-10 py-4 pb-8 shadow-purple-500'>
-        <img src={userLogo} className="rounded-full shadow-sm p-1 shadow-green-400 bg-yellow-200" alt='user_img' width={150} />
-        <h1 className='text-4xl font-bold ml-2 text-yellow-400'>I Card Generator</h1>
+        </div>
+      )
+    }
 
-      </div>
-    </div>
-    <div className='flex justify-center'>
-      <InputForm />
 
-    </div>
 
   </>
 
