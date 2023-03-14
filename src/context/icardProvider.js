@@ -20,7 +20,7 @@ export const StudentProvider = ({ children }) => {
         if (!newState[count]) {
           break
         }
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 8; i++) {
 
           if (!newState[count]) {
             break
