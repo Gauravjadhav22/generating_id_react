@@ -47,8 +47,8 @@ const Icards = () => {
                   style={{
                     border: "1px solid black",
                     backgroundColor: "purple",
-                    height: "5.2cm",
-                    width: "8.5cm",
+                    height: "5.8cm",
+                    width: "8.8cm",
                     boxSizing: "border-box",
                     display: "flex",
                     flexDirection: "column",
@@ -63,13 +63,11 @@ const Icards = () => {
                     style={{
                       backgroundColor: "#BF55EC",
                       borderRadius: "8px",
-
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
                       color: "white",
                       flexDirection: "row",
-                      padding: "1px",
                       paddingLeft: "2px",
                     }}
                   >
@@ -77,12 +75,12 @@ const Icards = () => {
                       <Image
                         alt="img.jpg"
                         src={logo}
-                        style={{ width: "45px" }}
+                        style={{ width: "50px" }}
                       />
                     </View>
                     <View
                       style={{
-                        marginHorizontal: "15px",
+                        marginHorizontal: "10px",
                         color: "white",
                         justifyContent: "center",
                         alignItems: "center",
@@ -90,16 +88,16 @@ const Icards = () => {
                     >
                       <Text
                         style={{
-                          marginTop: "2px",
+                         
                           textAlign: "center",
-                          fontSize: "10px",
+                          fontSize: "14px",
                         }}
                       >
                         mahatma gandhi mission's
                       </Text>
                       <Text
                         style={{
-                          marginTop: "2px",
+                          marginVertical: "2px",
                           textTransform: "uppercase",
                           fontSize: "8px",
                         }}
@@ -213,7 +211,7 @@ const Icards = () => {
                         alignItems: "center",
                         flexDirection: "row",
                         marginRight: "5px",
-                        marginTop:"10px"
+                        marginTop:"6px"
                       }}
                     >
                       <View>
@@ -245,9 +243,7 @@ const Icards = () => {
                         <Text
                           style={{
                           margin:"1px",
-                           
-
-                            marginHorizontal: "3px",
+                          marginHorizontal: "3px",
                             fontSize: "8px",
                           }}
                           fixed
@@ -288,12 +284,12 @@ const Icards = () => {
               return (
                 <View
                   style={{
-                    height: "5.2cm",
-                    width: "8.5cm",
+                    height: "5.8cm",
+                    width: "8.8cm",
                     display: "flex",
                     flexDirection: "column",
                     border: "1px solid black",
-                    borderRadius: "15px",
+                    borderRadius: "8px",
                     justifyContent: "flex-start",
                     margin: "12px",
                     overflow: "hidden",
