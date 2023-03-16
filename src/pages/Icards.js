@@ -88,7 +88,7 @@ const Icards = () => {
                     >
                       <Text
                         style={{
-                         
+
                           textAlign: "center",
                           fontSize: "14px",
                         }}
@@ -154,13 +154,13 @@ const Icards = () => {
                           Age: {studentData.age}
                         </Text>
                         <Text
-                          style={{ marginTop: "4px", fontSize: "8px",height:"20px",width:"120%" }}
+                          style={{ marginTop: "4px", fontSize: "8px", height: "20px", width: "120%" }}
                           fixed
                         >
-                          Address: {studentData.address} fsdfsdfsdfdsfsfsfsdfsdfsfsfsdfsffsfdsfs
+                          Address: {studentData.address}
                         </Text>
                         <Text
-                          style={{  fontSize: "8px" }}
+                          style={{ fontSize: "8px" }}
                           fixed
                         >
                           Email: {studentData.email}
@@ -211,14 +211,14 @@ const Icards = () => {
                         alignItems: "center",
                         flexDirection: "row",
                         marginRight: "5px",
-                        marginTop:"6px"
+                        marginTop: "6px"
                       }}
                     >
                       <View>
                         <Text
                           style={{
-                            margin:"1px",
-                          
+                            margin: "1px",
+
                             fontSize: "8px",
                           }}
                           fixed
@@ -227,10 +227,10 @@ const Icards = () => {
                         </Text>
                         <Text
                           style={{
-                            margin:"1px",
-                          
+                            margin: "1px",
 
-                          
+
+
                             fontSize: "8px",
                           }}
                           fixed
@@ -242,8 +242,8 @@ const Icards = () => {
                       <View>
                         <Text
                           style={{
-                          margin:"1px",
-                          marginHorizontal: "3px",
+                            margin: "1px",
+                            marginHorizontal: "3px",
                             fontSize: "8px",
                           }}
                           fixed
@@ -252,9 +252,9 @@ const Icards = () => {
                         </Text>
                         <Text
                           style={{
-                          margin:"1px",
+                            margin: "1px",
                             fontSize: "8px",
-                    
+
                           }}
                           fixed
                         >
@@ -327,9 +327,9 @@ const Icards = () => {
                       >
                         - if this card does not belong to you, please return it
                         to:{" "}
-                        <i>
+                     
                           the principal, MGM'S College of comp. Sci & It, nanded
-                        </i>
+                     
                       </Text>
                     </View>
                   </View>
@@ -348,7 +348,7 @@ const Icards = () => {
                       height: "55px",
                       width: "55px",
                       position: "absolute",
-                      top: "48%",
+                      top: "50%",
                     }}
                     src={`${`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=name: ${studentData.fullName} --> ParentContact: ${studentData.parentPhone} --> MotherName: ${studentData.motherName}`}`}
                   />
