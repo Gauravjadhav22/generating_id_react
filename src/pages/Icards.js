@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/logo-g.png";
-import sign from "../assets/sign.png";
+import sign from "../assets/prSign.png";
 import bgImg from "../assets/p1.jpg";
 import load from "../assets/load.gif";
 
@@ -53,7 +53,7 @@ const Icards = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "flex-start",
-                    borderRadius: "8px",
+                    borderRadius: "5px",
                     marginTop: "6px",
                     margin: "12px",
                   }}
@@ -62,25 +62,28 @@ const Icards = () => {
                   <View
                     style={{
                       backgroundColor: "#BF55EC",
-                      borderRadius: "8px",
+                      borderBottom: "2px solid #9B51A0",
+                      borderTopLeftRadius: "5px",
+                      borderTopRightRadius: "5px",
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
                       color: "white",
                       flexDirection: "row",
                       paddingLeft: "2px",
+
                     }}
                   >
-                    <View>
+                    <View style={{ paddingVertical: "2px" }}>
                       <Image
                         alt="img.jpg"
                         src={logo}
-                        style={{ width: "50px" }}
+                        style={{ width: "45px" }}
                       />
                     </View>
                     <View
                       style={{
-                        marginHorizontal: "10px",
+                        marginLeft: "5px",
                         color: "white",
                         justifyContent: "center",
                         alignItems: "center",
@@ -90,30 +93,31 @@ const Icards = () => {
                         style={{
 
                           textAlign: "center",
-                          fontSize: "14px",
+                          fontSize: "9px",
+                          marginTop: "-2px"
                         }}
                       >
                         mahatma gandhi mission's
                       </Text>
                       <Text
                         style={{
-                          marginVertical: "2px",
+                          marginVertical: "4px",
                           textTransform: "uppercase",
-                          fontSize: "8px",
+                          fontSize: "10px",
+                          alignSelf: "flex-start"
                         }}
                       >
                         college of computer science & it
                       </Text>
                       <Text
                         style={{
-                          marginTop: "2px",
-                          marginBottom: "4px",
+                          marginBottom: "2px",
                           fontWeight: "bold",
                           fontSize: "5px",
                           alignSelf: "flex-start",
                         }}
                       >
-                        near airport nanded-431605 tel-45645***
+                        near airport nanded-431605 tel: (02462)-222592
                         web:https://www.mgmccsit.ac.in/
                       </Text>
                     </View>
@@ -127,8 +131,9 @@ const Icards = () => {
                       flexDirection: "column",
                       alignContent: "start",
                       alignItems: "left",
-                      margin: "5px",
-                      borderRadius: "10px",
+                      height: "70%",
+                      borderBottomLeftRadius: "5px",
+                      borderBottomRightRadius: "5px",
                     }}
                   >
                     <View
@@ -154,14 +159,14 @@ const Icards = () => {
                           Age: {studentData.age}
                         </Text>
                         <Text
-                          style={{ marginTop: "4px", fontSize: "8px", height: "20px", width: "120%" }}
+                          style={{ marginTop: "4px", fontSize: "8px", height: "22px", width: "200%" }}
                           fixed
                         >
                           Address: {studentData.address}
                         </Text>
                         <Text
-                          style={{ fontSize: "8px" }}
-                          fixed
+                          style={{ fontSize: "8px", marginTop: "2px", height: "22px", width: "220%", marginBottom: "4px" }}
+
                         >
                           Email: {studentData.email}
                         </Text>
@@ -170,10 +175,11 @@ const Icards = () => {
                         style={{
                           width: "65px",
                           height: "70px",
-                          marginTop: "-12px",
+                          left: "58%",
                           alignSelf: "flex-end",
                           marginLeft: "35px",
-                          overflow: "hidden",
+                          top:"-20%",
+                          position: "absolute",
                           display: "flex",
                           justifyContent: "center",
                         }}
@@ -190,16 +196,22 @@ const Icards = () => {
                             padding: "1px",
                           }}
                         />
-                        <Image
-                          alt="img.jpg"
-                          src={sign}
-                          style={{
-                            width: "55px",
-                            height: "24px",
-                            position: "absolute",
-                            top: "65%",
-                          }}
-                        />
+                        <View style={{
+                          width: "55px",
+                          height: "30px",
+                          position: "absolute",
+                          top: "74%",
+                          left: "15%"
+                         
+
+                        }}>
+                          <Image
+                            alt="img.jpg"
+                            src={sign}
+
+                          />
+                        </View>
+
                       </View>
                     </View>
 
@@ -227,7 +239,7 @@ const Icards = () => {
                         </Text>
                         <Text
                           style={{
-                            margin: "1px",
+                            marginVertical: "2px",
 
 
 
@@ -237,13 +249,24 @@ const Icards = () => {
                         >
                           Dob: {studentData.dob}
                         </Text>
+                        <Text
+                          style={{
+                            margin: "1px",fontSize: "8px",
+                          }}
+                          fixed
+                        >
+                          Year: {studentData.year}
+                        </Text>
+              
                       </View>
 
-                      <View>
+                      <View style={{ alignItems: "flex-start", marginHorizontal: "3px", }}>
+                        <Text style={{ marginTop: "-3px", marginRight: "5px", fontSize: "11px", alignSelf: "flex-end", zIndex:100 }}>Principal</Text>
+
                         <Text
                           style={{
                             margin: "1px",
-                            marginHorizontal: "3px",
+
                             fontSize: "8px",
                           }}
                           fixed
@@ -289,66 +312,85 @@ const Icards = () => {
                     display: "flex",
                     flexDirection: "column",
                     border: "1px solid black",
-                    borderRadius: "8px",
+                    borderRadius: "5px",
                     justifyContent: "flex-start",
                     margin: "12px",
                     overflow: "hidden",
+
                   }}
                   key={index + "key"}
                 >
-                  <View style={{ padding: "10px" }}>
+                  <View style={{ marginTop: "2px", flexDirection: "row", justifyContent: "space-between", }}>
+
+                    <Text style={{ margin: "1px", marginLeft: "10px", fontSize: "14px", fontWeight: "bold" }}>Please Note</Text>
+                    <Text style={{ margin: "1px", marginLeft: "10px", fontSize: "12px", marginRight: "4px", fontWeight: "bold" }}>{studentData.studentCode}</Text>
+                  </View>
+
+                  <View style={{ padding: "10px", lineHeight: 1.5 }}>
+                    <Text
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "8px",
+                        marginBottom: "4px"
+                      }}
+                    >
+                      1. the student should possess identity card and must
+                      produce whenever demanded.
+                    </Text>
+
+                    <Text
+                      style={{
+                        marginTop: "-1px",
+                        marginBottom: "4px",
+                        fontWeight: "bold",
+                        fontSize: "8px",
+                      }}
+                    >
+                      2. if it is lost. the card holder must intimate to the
+                      principal and apply for a new card within a week.
+                    </Text>
+
                     <Text
                       style={{
                         fontWeight: "bold",
                         fontSize: "8px",
                       }}
                     >
-                      - the student should possess identity card and must
-                      produce whenever demanded.
+                      3. if this card does not belong to you, please return it
+                      to:{" "}
+
+                      the principal, MGM'S College of comp. Sci & It, nanded
+
                     </Text>
-                    <View>
-                      <Text
-                        style={{
-                          marginVertical: "12px",
-                          fontWeight: "bold",
-                          fontSize: "8px",
-                        }}
-                      >
-                        - if it is lost. the card holder must intimate to the
-                        principal and apply for a new card within a week.
-                      </Text>
-                    </View>
-                    <View>
-                      <Text
-                        style={{
-                          fontWeight: "bold",
-                          fontSize: "8px",
-                        }}
-                      >
-                        - if this card does not belong to you, please return it
-                        to:{" "}
-                     
-                          the principal, MGM'S College of comp. Sci & It, nanded
-                     
-                      </Text>
-                    </View>
+
                   </View>
-                  <Image
-                    alt="img.jpg"
-                    src={bgImg}
-                    style={{
-                      width: "100%",
-                      height: "60%",
-                      padding: "-32px",
-                    }}
-                  />
+                  <View style={{
+                    width: "100%",
+                    height: "60%",
+                    marginBottom: "-8px"
+
+                  }}>
+
+
+                    <Image
+                      alt="img.jpg"
+                      src={bgImg}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+
+
+                      }}
+                    />
+                  </View>
 
                   <Image
                     style={{
-                      height: "55px",
-                      width: "55px",
+                      height: "58px",
+                      width: "60px",
                       position: "absolute",
-                      top: "50%",
+                      top: "61%",
+                      left: "4%"
                     }}
                     src={`${`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=name: ${studentData.fullName} --> ParentContact: ${studentData.parentPhone} --> MotherName: ${studentData.motherName}`}`}
                   />

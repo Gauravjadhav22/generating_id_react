@@ -129,13 +129,13 @@ const Home = () => {
     <div className='flex justify-center mt-6'>
       <label className='bg-black text-white w-fit'>Choose Input:
 
-      <select value={setShowForm} onChange={handleChange} className='bg-gray-500 ml-4 w-fit ' >
+        <select value={setShowForm} onChange={handleChange} className='bg-gray-500 ml-4 w-fit ' >
 
-        <option selected value="InputFrom">--select--</option>
-        <option selected value="InputFrom">Enter Details</option>
-        <option value="ExcelFile">Upload Excel File</option>
+          <option selected value="InputFrom">--select--</option>
+          <option selected value="InputFrom">Enter Details</option>
+          <option value="ExcelFile">Upload Excel File</option>
 
-      </select>
+        </select>
       </label>
 
     </div>
@@ -163,7 +163,7 @@ const Home = () => {
     }
 
 
-
+<div className=' absolute mt-14 left-0 right-0 flex justify-center'><p className='w-fit shadow-xl  hover:shadow-cyan-400 hover:rounded hover:shadow-lg'><a href='https://gauravjadhav22.github.io/portfolio-website/' className='shadow-sm p-1 px-2 w-full hover:bg-green-500 hover:text-white  shadow-amber-200' target="_blank"> Developed By -&gt; </a></p></div>
   </>
 
   )
